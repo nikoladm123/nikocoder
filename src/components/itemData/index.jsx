@@ -1,6 +1,6 @@
 import faker from "faker";
 
-export const itemData = [...Array(4)].map(() => ({
+export const itemDataa = [...Array(4)].map(() => ({
   id: faker.datatype.uuid(),
   name: faker.commerce.productName(),
   price: faker.commerce.price(),

@@ -1,27 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 
-class ButtonCounter extends React.Component {
-  state = { counter: 0 };
+export default function ButtonCounter(props) {
+  const { stock } = props;
+  const [counter, setCounter] = useState(0);
 
-  handleIncrement = () => {
-    this.setState((state) => ({ counter: state.counter + 1 }));
+  const handleIncrement = () => {
+    if (counter < stock) {
+      setCounter(counter + 1);
+    }
   };
 
-  handleDecrement = () => {
-    this.setState((state) => ({ counter: state.counter - 1 }));
+  const handleDecrement = () => {
+    if (counter > 0) {
+      setCounter(counter - 1);
+    }
   };
-  render() {
-    const displayCounter = this.state.counter > 0;
-    return (
-      <ButtonGroup size="small" aria-label="small outlined button group">
-        <Button onClick={this.handleIncrement}>+</Button>
-        {displayCounter && <Button disabled>{this.state.counter}</Button>}
-        {displayCounter && <Button onClick={this.handleDecrement}>-</Button>}
-      </ButtonGroup>
-    );
-  }
+
+  return (
+    <ButtonGroup size="small" aria-label="small outlined button group">
+      <Button
+        onClick={handleIncrement}
+        disabled={counter === stock ? true : false}
+      >
+        {counter === stock ? "out of stock" : "+"}
+      </Button>
+      <Button disabled>{counter}</Button>
+      <Button onClick={handleDecrement} disabled={counter === 0 ? true : false}>
+        -
+      </Button>
+    </ButtonGroup>
+  );
 }
-
-export default ButtonCounter;
