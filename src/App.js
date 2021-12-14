@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
@@ -13,6 +14,8 @@ function App() {
     setShowAlert(false);
   };
   return (
+    // <Routes>
+    // <Route exact path="/item" element={<ItemListContainer />} />
     <div className="App">
       <NavBar title={"MENU"} openAlert={openAlert} />
       <ItemListContainer />
@@ -26,6 +29,7 @@ function App() {
         />
       ) : null}
     </div>
+    // </Routes>
   );
 }
 
